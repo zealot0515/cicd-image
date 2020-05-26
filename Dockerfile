@@ -30,7 +30,10 @@ RUN cd /tmp/ && /usr/bin/wget https://get.helm.sh/helm-v3.1.1-linux-amd64.tar.gz
 RUN cd /tmp/ && /usr/bin/tar -zxf  ./helm-v3.1.1-linux-amd64.tar.gz && mv ./linux-amd64/helm /usr/local/bin/ && rm ./linux-amd64 -rf
 RUN cd /tmp/ && rm ./helm-v3.1.1-linux-amd64.tar.gz
 
-
+# install kubectl
+RUN cd /tmp/ && curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.3/bin/linux/amd64/kubectl
+RUN cd /tmp/ && chmod +x ./kubectl
+RUN cd /tmp/ &&  mv ./kubectl /usr/local/bin/kubectl
 
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/usr/lib/systemd/systemd"]
